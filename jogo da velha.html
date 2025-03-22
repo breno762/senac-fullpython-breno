@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <style>
+        #board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        .cell:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Jogo da Velha</h1>
+<div id="board"></div>
+<div id="message"></div>
+<button id="restart">Reiniciar Jogo</button>
+
+<script>
+    const boardElement = document.getElementById('board');
+    const messageElement = document.getElementById('message');
+    const restartButton = document.getElementById('restart');
+
+    let board = [
+        ['', '', ''],
+        ['', '', ''],
+        ['', '', '']
+    ];
+    let currentPlayer = 'X';
+    let gameActive = true;
+
+    function createBoard() {
+        boardElement.innerHTML = '';
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                cell.dataset.row = i;
+                cell.dataset.col = j;
+                cell.addEventListener('click', handleCellClick);
+                boardElement.appendChild(cell);
+            }
+        }
+    }
+
+    function handleCellClick(event) {
+        const row = event.target.dataset.row;
+        const col = event.target.dataset.col;
+
+        if (board[row][col] !== '' || !gameActive) {
+            return;
+        }
+
+        board[row][col] = currentPlayer;
+        event.target.textContent = currentPlayer;
+
+        if (checkWinner()) {
+            messageElement.textContent = `Jogador ${currentPlayer} venceu!`;
+            gameActive = false;
+        } else if (board.flat().every(cell => cell !== '')) {
+            messageElement.textContent = 'Empate!';
+            gameActive = false;
+        } else {
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        }
+    }
+
+    function checkWinner() {
+        const winningCombinations = [
+            // Linhas
+            [[0, 0], [0, 1], [0, 2]],
+            [[1, 0], [1, 1], [1, 2]],
+            [[2, 0], [2, 1], [2, 2]],
+            // Colunas
+            [[0, 0], [1, 0], [2, 0]],
+            [[0, 1], [1, 1], [2, 1]],
+            [[0, 2], [1, 2], [2, 2]],
+            // Diagonais
+            [[0, 0], [1, 1], [2, 2]],
+            [[0, 2], [1, 1], [2, 0]]
+        ];
+
+        return winningCombinations.some(combination => {
+            const [a, b, c] = combination;
+            return board[a[0]][a[1]] === currentPlayer &&
+                   board[b[0]][b[1]] === currentPlayer &&
+                   board[c[0]][c[1]] === currentPlayer;
+        });
+    }
+
+    restartButton.addEventListener('click', () => {
+        board = [
+            ['', '', ''],
+            ['', '', ''],
+            ['', '', '']
+        ];
+        currentPlayer = 'X';
+        gameActive = true;
+        messageElement.textContent = '';
+        createBoard();
+    });
+
+    createBoard();
+</script>
+
+</body>
+</html>
