@@ -1,0 +1,148 @@
+/* Estilo geral do site */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #080808;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1, h2, h3 {
+    color: #333;
+  }
+  
+  /* Cabeçalho */
+  header {
+    background-color: #110e0e;
+    padding: 30px;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+    color: #555;
+  }
+  
+  header p {
+    font-size: 1.2rem;
+    color: #777;
+  }
+  
+  /* Navegação */
+  .navbar {
+    background-color: #343a40;
+  }
+  
+  .navbar .navbar-brand {
+    color: #fff;
+  }
+  
+  .navbar .nav-link {
+    color: #fff !important;
+  }
+  
+  .navbar .nav-link:hover {
+    color: #f8f9fa !important;
+  }
+  
+  /* Banner Principal */
+  section.container.text-center.my-5 {
+    background-color: #e9ecef;
+    padding: 50px 20px;
+    border-radius: 8px;
+  }
+  
+  section.container.text-center.my-5 h2 {
+    font-size: 2.5rem;
+    color: #343a40;
+  }
+  
+  section.container.text-center.my-5 .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  section.container.text-center.my-5 .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  /* Produtos em Destaque */
+  section.container.my-5 {
+    margin-top: 50px;
+  }
+  
+  section.container.my-5 .col-md-4 {
+    transition: transform 0.3s ease;
+  }
+  
+  section.container.my-5 .col-md-4:hover {
+    transform: translateY(-10px);
+  }
+  
+  section.container.my-5 img {
+    max-height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  section.container.my-5 img:hover {
+    transform: scale(1.05);
+  }
+  
+  section.container.my-5 h3 {
+    color: #333;
+    margin-top: 15px;
+    font-size: 1.25rem;
+  }
+  
+  section.container.my-5 p {
+    color: #555;
+    font-size: 1rem;
+  }
+  
+  /* Redes Sociais */
+  section.bg-light.text-center.p-5 {
+    background-color: #f1f1f1;
+    padding: 40px;
+    border-radius: 8px;
+  }
+  
+  section.bg-light.text-center.p-5 .btn-outline-dark {
+    border: 2px solid #343a40;
+    color: #343a40;
+    font-weight: bold;
+    padding: 10px 25px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  section.bg-light.text-center.p-5 .btn-outline-dark:hover {
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  /* Rodapé */
+  footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 1rem;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    section.container.text-center.my-5 {
+      padding: 30px 15px;
+    }
+  
+    section.container.my-5 .col-md-4 {
+      margin-bottom: 20px;
+    }
+  
+    footer {
+      font-size: 0.875rem;
+    }
+  }
