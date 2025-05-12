@@ -49,4 +49,12 @@ class Conta:
             arquivo.write(f"Saldo atual: {self.saldo}\n")
         print(f"Extrato salvo em '{nome_arquivo}'")
 
+if __name__ == "__main__":
+    conta = Conta(100)        
+    conta.depositar(50)          
+    conta.sacar(30)              
+    conta.extrato()              
+    conta.salvar_extrato()       
+
+
 
